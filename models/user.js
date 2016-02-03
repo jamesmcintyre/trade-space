@@ -14,7 +14,9 @@ var User;
 var userSchema = mongoose.Schema({
   uid: { type: String, required: true },
   email: { type:String, required: true},
-  name: {first: String, last: String}
+  name: {first: String, last: String},
+  iat: String,
+
 });
 
 userSchema.statics.register = function (userObj, cb) {
@@ -38,8 +40,10 @@ userSchema.statics.login = function (userObj, cb) {
 
   ref.authWithPassword(userObj, function(err, authData){
     if(err) return cb(err);
+
+    console.log(authData.uid);
     
-    User.findOne({firebaseId: authData.uid}, function(err, user) {
+    User.findOne({uid: authData.uid}, function(err, user) {
       if(err || !user) return cb(err || 'User not found in db.');
       var token = user.generateToken();
       cb(null, token);
@@ -49,7 +53,7 @@ userSchema.statics.login = function (userObj, cb) {
 
 userSchema.statics.isLoggedIn = function(req, res, next){
   //WE MIGHT HAVE PROBLEMS HERE
-  var token = req.cookies.userjwt;
+  var token = req.cookies.userToken;
   if(!token) return authfail('no token');
 
   try {
@@ -72,6 +76,18 @@ userSchema.statics.isLoggedIn = function(req, res, next){
 
 };
 
+userSchema.methods.generateToken = function() {
+  console.log('ssssssssssss',this);
+  var payload = {
+    uid: this.uid,
+    _id: this._id,
+    iat: moment().unix()
+  };
+  console.log('the jwt secret: ',JWT_SECRET)
+  var token = jwt.encode(payload, JWT_SECRET)
+  console.log('the token: ',token)
+  return token;
+}
 
 User = mongoose.model('User', userSchema);
 
