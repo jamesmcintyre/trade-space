@@ -1,5 +1,51 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  .col-sm-8
+    //- table#incomming.table
+    //-   th
+    //-     td Incomming Requests
+    //-     td 
+    //-     each val in requestArray
+    //-       tr
+    //-         td.incomming
+    //-           p= val.name
+    //-         td.view
+    //-           button.btn.btn-success.reqview(data-id=val._id) View
+    //- 
+    //- table#outgoing.table
+    //-   th
+    //-     td Your Requests
+    //-     td 
+    //-     each val in yourReqArray
+    //-       tr
+    //-         td.outgoing
+    //-           p= val.name
+    //-         td.view
+    //-           button.btn.btn-success.yourreqview(data-id=val._id) View          
+
+  .col-sm-4
+    ul#profile
+      li #{"Name: "+userData.name.first+' '+userData.name.last}
+      li #{"Email: "+userData.email}
+      li#changepassword(data-id=userData._id) a(href='#') Change Password
+  #itemlistcontain.col-sm-12
+  table#itemlist
+    th
+      td Name
+      td Description
+      td Trade Status
+      td View
+      td Delete
+    each itemval in itemsArray
+      tr#itemTemplate
+        td.name
+          p= itemval.name
+        td.desc
+          p= itemval.description
+        td.status
+          p= itemval.status
+        td
+          button.btn.btn-success.view(data-id=itemval._id) View
+        td
+          button.delete.btn.btn-danger(data-id=itemval._id) Delete

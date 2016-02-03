@@ -42,7 +42,7 @@ userSchema.statics.login = function (userObj, cb) {
     if(err) return cb(err);
 
     console.log(authData.uid);
-    
+
     User.findOne({uid: authData.uid}, function(err, user) {
       if(err || !user) return cb(err || 'User not found in db.');
       var token = user.generateToken();
@@ -92,4 +92,3 @@ userSchema.methods.generateToken = function() {
 User = mongoose.model('User', userSchema);
 
 module.exports = User;
-

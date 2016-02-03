@@ -7,6 +7,8 @@ var moment = require('moment');
 var JWT_SECRET = process.env.JWT_SECRET;
 
 
+var statusTypes = ['unlisted', 'listed', 'requested'];
+
 var Item;
 
 var itemSchema = mongoose.Schema({
@@ -19,7 +21,8 @@ var itemSchema = mongoose.Schema({
   requesterId: {
     type:mongoose.Schema.Types.ObjectId,
     ref: 'User'
-  }
+  },
+  status: { type: String, enum: statusTypes}
 });
 
 
@@ -28,6 +31,3 @@ var itemSchema = mongoose.Schema({
 Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;
-
-
-
