@@ -5,7 +5,7 @@ var Item = require('../models/item');
 
 //var Item;
 
-/* GET home page. */
+//create item
 router.post('/', function(req, res, next) {
   var newItem = req.body;
 
@@ -16,10 +16,19 @@ router.post('/', function(req, res, next) {
 
 });
 
+//delete item
 router.delete('/:itemId', function(req, res, next){
   Item.findByIdAndRemove(req.params.itemId, function(err, item){
     if(err) res.status(400).send(err);
     res.send('Item deleted.');
+  })
+});
+
+//render item detail jade view.
+router.get('/:itemId', function(req, res, next){
+  Item.findById(req.params.itemId, function(err, item){
+    if(err) res.status(400).send(err);
+    res.render('item', {itemInfo: item});
   })
 });
 
