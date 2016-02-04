@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  .col-sm-4.col-sm-offset-4
+  .col-sm-6
     form#additem
       .form-group
         label(for='itemName') Item Name
@@ -9,4 +9,8 @@ block content
       .form-group
         label(for='description') Description
         input#description.form-control(type='text', placeholder='')
+      .form-group
+        label
+          input#listopt(type='checkbox', checked='')
+          = " List for trade!"
       button#addItemButton.btn.btn-default(type='submit', data-id=userToken._id) Add Item

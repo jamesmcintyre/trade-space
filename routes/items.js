@@ -15,11 +15,17 @@ router.get('/add', User.isLoggedIn, function(req, res, next) {
   if(!userToken) res.redirect('/login')
 
   console.log(userToken);
-  res.render('item', {userToken: userToken});
+  res.render('additem', {userToken: userToken});
 
 });
 
-
+//render BROWSE view
+router.get('/browse', function(req, res, next){
+  Item.find({listed: true}, function(err, items){
+    if(err) res.status(400).send(err);
+    res.render('browse', {itemsArray: items});
+  })
+});
 
 
 

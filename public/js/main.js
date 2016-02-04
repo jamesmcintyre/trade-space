@@ -54,10 +54,12 @@ function registerUser(e){
 
 function addItem(e){
   e.preventDefault();
+
   var itemData = {
     name: $('#itemName').val(),
     description: $('#description').val(),
-    ownerId: $('#addItemButton').attr('data-id')
+    ownerId: $('#addItemButton').attr('data-id'),
+    listed: $('#listopt').attr('checked')
   }
 
   $.post('/items', itemData)

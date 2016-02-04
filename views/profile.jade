@@ -25,27 +25,32 @@ block content
     //-           button.btn.btn-success.yourreqview(data-id=val._id) View          
 
   .col-sm-4
-    ul#profile
-      li #{"Name: "+userData.name.first+' '+userData.name.last}
-      li #{"Email: "+userData.email}
-      li#changepassword(data-id=userData._id) a(href='#') Change Password
+    ul.list-group#profile
+      li.list-group-item.active Profile Info
+      li.list-group-item #{"Name: "+userData.name.first+' '+userData.name.last}
+      li.list-group-item #{"Email: "+userData.email}
+      li.list-group-item.text-right#changepassword(data-id=userData._id)
+        a(href='#') Change Password
   #itemlistcontain.col-sm-12
-  table#itemlist
-    tr
-      th Name
-      th Description
-      th Trade Status
-      th View
-      th Delete
-    each itemval in itemsArray
-      tr#itemTemplate
-        td.name
-          p= itemval.name
-        td.desc
-          p= itemval.description
-        td.status
-          p= itemval.status
-        td
-          button.btn.btn-success.view(data-id=itemval._id) View
-        td
-          button.delete.btn.btn-danger(data-id=itemval._id) Delete
+    table#browselist.table
+      tr
+        th Name
+        th Description
+        th Status
+        th.text-right View Item
+        th.text-right Delete Item
+      each itemval in itemsArray
+        tr#itemTemplate
+          td.name
+            p= itemval.name
+          td.desc
+            p= itemval.description
+          td.status
+            if itemval.listed
+              p Listed for Trade
+            else if itemval.listed === true && itemval.requested === false
+              p Not Listed for Trade
+          td.text-right
+            button.btn.btn-success.btn-xs.viewitem(data-id=itemval._id) View
+          td.text-right
+            button.btn.btn-danger.btn-xs.deleteitem(data-id=itemval._id) Delete

@@ -6,3 +6,12 @@ body {
 a {
   color: #00B7FF;
 }
+
+#itemlistcontain {
+  margin-top: 20px;
+}
+
+
+#maincontent {
+  margin-top: 20px;
+}

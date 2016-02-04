@@ -1,0 +1,49 @@
+extends layout
+
+block content
+  //- .col-sm-8
+    //- table#incomming.table
+    //-   th
+    //-     td Incomming Requests
+    //-     td 
+    //-     each val in requestArray
+    //-       tr
+    //-         td.incomming
+    //-           p= val.name
+    //-         td.view
+    //-           button.btn.btn-success.reqview(data-id=val._id) View
+    //- 
+    //- table#outgoing.table
+    //-   th
+    //-     td Your Requests
+    //-     td 
+    //-     each val in yourReqArray
+    //-       tr
+    //-         td.outgoing
+    //-           p= val.name
+    //-         td.view
+    //-           button.btn.btn-success.yourreqview(data-id=val._id) View          
+
+  //- .col-sm-4
+  //-   ul.list-group#profile
+  //-     li.list-group-item.active Profile Info
+  //-     li.list-group-item #{"Name: "+userData.name.first+' '+userData.name.last}
+  //-     li.list-group-item #{"Email: "+userData.email}
+  //-     li.list-group-item.text-right#changepassword(data-id=userData._id)
+  //-       a(href='#') Change Password
+  .col-sm-12
+    h3 Browse Listed Items
+  #itemlistcontain.col-sm-12
+    table#itemlist.table
+      tr
+        th.col-sm-3 Name
+        th.col-sm-7 Description
+        th.col-sm-2.text-right View
+      each itemval in itemsArray
+        tr#itemTemplate
+          td.name.col-sm-3
+            p= itemval.name
+          td.desc.col-sm-7
+            p= itemval.description
+          td.col-sm-2.text-right
+            button.btn.btn-success.btn-xs.view(data-id=itemval._id) View
