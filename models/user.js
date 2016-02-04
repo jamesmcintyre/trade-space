@@ -14,7 +14,7 @@ var User;
 var userSchema = mongoose.Schema({
   uid: { type: String, required: true },
   email: { type:String, required: true},
-  name: {first: String, last: String},
+  name: String,
   iat: String,
 
 });
@@ -24,11 +24,14 @@ userSchema.statics.register = function (userObj, cb) {
     return cb('Missing required field (email, password)');
   }
 
+  console.log(userObj);
+
   ref.createUser(userObj, function(err, userData){
     if(err) return cb(err);
     var user = new User();
     user.uid = userData.uid;
     user.email = userObj.email;
+    user.name = userObj.name;
     user.save(cb);
   });
 };

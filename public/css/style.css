@@ -15,3 +15,7 @@ a {
 #maincontent {
   margin-top: 20px;
 }
+
+.viewitem a, .deleteitem a {
+  color: white;
+}

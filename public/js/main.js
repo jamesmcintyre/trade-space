@@ -33,6 +33,7 @@ function registerUser(e){
   var password2 = $('#regPassword2').val()
 
   var registerData = {
+    name: $('#regFirst').val(),
     email: $('#regEmail').val(),
     password: $('#regPassword').val()
   }

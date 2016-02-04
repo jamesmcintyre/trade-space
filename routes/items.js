@@ -55,12 +55,13 @@ router.delete('/:itemId', function(req, res, next){
 
 //render item detail jade view.
 router.get('/:itemId', function(req, res, next){
-  Item.findById(req.params.itemId, function(err, item){
+  Item.findById(req.params.itemId).populate('ownerId requesterId').exec(function(err, item){
     if(err) res.status(400).send(err);
-    res.render('item', {itemInfo: item});
-  })
+    console.log(item);
+    res.render('item', {itemData: item});
+    
+  });
 });
-
 // WE WILL BUILD GET ROUTE FOR SINGLE ITEM IF WE CHOOSE TO USE JQUERY FOR RENDER
 // router.get('/', User.isLoggedIn, function(req, res, next){
 //   var userId = req.query.ownerId;

@@ -27,7 +27,7 @@ block content
   .col-sm-4
     ul.list-group#profile
       li.list-group-item.active Profile Info
-      li.list-group-item #{"Name: "+userData.name.first+' '+userData.name.last}
+      li.list-group-item #{"Name: "+userData.name}
       li.list-group-item #{"Email: "+userData.email}
       li.list-group-item.text-right#changepassword(data-id=userData._id)
         a(href='#') Change Password
@@ -51,6 +51,8 @@ block content
             else if itemval.listed === true && itemval.requested === false
               p Not Listed for Trade
           td.text-right
-            button.btn.btn-success.btn-xs.viewitem(data-id=itemval._id) View
+            button.btn.btn-success.btn-xs.viewitem
+              a(href= '/items/' + itemval._id) View
           td.text-right
-            button.btn.btn-danger.btn-xs.deleteitem(data-id=itemval._id) Delete
+            button.btn.btn-danger.btn-xs.deleteitem
+              a(href= '/items/' + itemval._id) Delete
