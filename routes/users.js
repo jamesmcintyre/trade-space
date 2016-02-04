@@ -34,7 +34,9 @@ router.get('/profile', User.isLoggedIn, function(req, res){
 
     Item.find({'ownerId': userId}, function(err, data){
       if(err) res.status(400).send(err);
+      
       res.render('profile', {userData: user, itemsArray: data});
+
     })
 
 
@@ -43,6 +45,7 @@ router.get('/profile', User.isLoggedIn, function(req, res){
   });
 });
 
+// .replace(/\"/g, "");
 
 // router.get('/', User.isLoggedIn, function(req, res, next){
 //   var userId = req.query.ownerId;

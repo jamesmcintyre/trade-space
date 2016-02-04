@@ -46,4 +46,5 @@ block content
           td.desc.col-sm-7
             p= itemval.description
           td.col-sm-2.text-right
-            button.btn.btn-success.btn-xs.view(data-id=itemval._id) View
+            button.btn.btn-success.btn-xs.viewitem
+              a(href= '/items/' + itemval._id) View
