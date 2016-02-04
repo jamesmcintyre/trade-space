@@ -31,12 +31,12 @@ block content
       li#changepassword(data-id=userData._id) a(href='#') Change Password
   #itemlistcontain.col-sm-12
   table#itemlist
-    th
-      td Name
-      td Description
-      td Trade Status
-      td View
-      td Delete
+    tr
+      th Name
+      th Description
+      th Trade Status
+      th View
+      th Delete
     each itemval in itemsArray
       tr#itemTemplate
         td.name

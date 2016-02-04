@@ -54,25 +54,21 @@ userSchema.statics.login = function (userObj, cb) {
 userSchema.statics.isLoggedIn = function(req, res, next){
   //WE MIGHT HAVE PROBLEMS HERE
   var token = req.cookies.userToken;
-  if(!token) return authfail('no token');
+  if(!token) res.status(401).send({error: `Authentication failed, no token`});
 
   try {
     var payload = jwt.decode(token, JWT_SECRET);
   } catch (err) {
-    return authFail('decode fail');
+    return res.status(401).send({error: `Authentication failed: ${err}`});
   }
 
   if(moment().isAfter( moment(payload.iat, 'X').add(1, 'day') )) {
-    return authFail('expiration fail');
+    return res.status(401).send({error: `Authentication failed, expired: ${err}`});
   };
 
   req.token = payload;
 
   next();
-
-  function authFail(err) {
-    res.status(401).send({error: `Authentication failed: ${err}`})
-  }
 
 };
 

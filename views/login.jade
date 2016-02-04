@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  .col-sm-4.col-sm-offset-4
+    form#login
+      .form-group
+        label(for='InputEmail') Email address
+        input#InputEmail.form-control(type='email', placeholder='Email')
+      .form-group
+        label(for='InputPassword') Password
+        input#InputPassword.form-control(type='password', placeholder='Password')
+      button#loginButton.btn.btn-default(type='submit') Submit

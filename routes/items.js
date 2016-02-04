@@ -3,11 +3,34 @@ var router = express.Router();
 
 var Item = require('../models/item');
 
+var User = require('../models/user');
+
 //var Item;
+
+
+
+//render add item view
+router.get('/add', User.isLoggedIn, function(req, res, next) {
+  var userToken = req.token;
+  if(!userToken) res.redirect('/login')
+
+  console.log(userToken);
+  res.render('item', {userToken: userToken});
+
+});
+
+
+
+
+
+
+
 
 //create item
 router.post('/', function(req, res, next) {
   var newItem = req.body;
+
+  console.log(newItem);
 
   Item.create(newItem, function(err, savedItem){
     if (err) res.status(400).send('Failed to save new user.');
