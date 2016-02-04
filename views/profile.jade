@@ -31,6 +31,10 @@ block content
       li.list-group-item #{"Email: "+userData.email}
       li.list-group-item.text-right#changepassword(data-id=userData._id)
         a(href='#') Change Password
+  .col-sm-12
+    .col-sm-4.col-sm-offset-4
+      button.btn.btn-success.viewitem
+      a(href= '/items/add') Add Item
   #itemlistcontain.col-sm-12
     table#browselist.table
       tr
