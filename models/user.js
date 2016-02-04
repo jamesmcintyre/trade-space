@@ -6,8 +6,9 @@ var jwt = require('jwt-simple');
 var moment = require('moment');
 
 var JWT_SECRET = process.env.JWT_SECRET;
+var FIREBASE_URI = process.env.FIREBASE_URI;
 
-var ref = new Firebase('https://jmmusers2.firebaseio.com/');
+var ref = new Firebase(FIREBASE_URI);
 
 var User;
 
